@@ -7,6 +7,11 @@ dependencies = [
     "deepagents>=0.2.6",
     "langchain-quickjs",
     "langchain-anthropic>=0.3.0",
+    "socksio>=1.0.0",
+    "langchain-openai>=1.2.1",
+    "langchain-community>=0.4.1",
+    "dashscope>=1.25.17",
+    "pysocks>=1.7.1",
 ]
 
 [tool.uv.sources]

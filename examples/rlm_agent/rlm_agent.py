@@ -38,6 +38,7 @@ import argparse
 from typing import Any
 
 from deepagents import create_deep_agent
+from langchain_core.language_models import BaseChatModel
 from deepagents.middleware.subagents import (
     GENERAL_PURPOSE_SUBAGENT,
     CompiledSubAgent,
@@ -51,7 +52,7 @@ _MAX_DEPTH_LIMIT = 8  # guard against typos that would build thousands of agents
 
 def create_rlm_agent(
     *,
-    model: str | None = None,
+    model: str | BaseChatModel | None = None,
     tools: list[BaseTool] | None = None,
     subagents: list[SubAgent | CompiledSubAgent] | None = None,
     max_depth: int = 1,
@@ -188,8 +189,13 @@ def _parse_args() -> argparse.Namespace:
 
 def _main() -> None:
     args = _parse_args()
+    import os
+    from langchain_openai import ChatOpenAI
+    os.environ["OPENAI_API_KEY"] = "sk-1e631a8dda5f46cba0ef26a6bf1dcbd1"
+    os.environ["OPENAI_BASE_URL"] = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    model = ChatOpenAI(model="qwen3.6-plus-2026-04-02")
     agent = create_rlm_agent(
-        model=args.model,
+        model=model,
         tools=[add],
         max_depth=args.max_depth,
     )

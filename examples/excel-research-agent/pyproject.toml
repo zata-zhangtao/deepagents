@@ -1,0 +1,17 @@
+[project]
+name = "excel-research-agent"
+version = "0.1.0"
+description = "Deep Agent that searches the web and generates Excel reports"
+requires-python = ">=3.11"
+dependencies = [
+    "deepagents>=0.2.6",
+    "langchain-openai>=1.2.1",
+    "openpyxl>=3.1.0",
+    "ddgs>=7.0.0",
+    "socksio>=1.0.0",
+    "pysocks>=1.7.1",
+    "python-dotenv>=1.2.2",
+]
+
+[tool.uv.sources]
+deepagents = { path = "../../libs/deepagents", editable = true }
